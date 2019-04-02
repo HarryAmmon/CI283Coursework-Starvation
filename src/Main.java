@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 
 public class Main {
-	static ArrayList<String> processes = new ArrayList<String>();
+	static ArrayList<Process> processes = new ArrayList<Process>();
 	public static void main(String[] args) throws IOException {
 		readCSV("./processes.csv");
 		for(int i = 0;i<processes.size();i++) {
-			System.out.println(processes.get(i));
+			System.out.println(processes.get(i).getArrivalTime());
 			}
 		}
 	
@@ -17,7 +17,7 @@ public class Main {
 		BufferedReader reader = new BufferedReader(new FileReader(path));
 		String line = null;
 		while((line = reader.readLine()) != null) {
-			processes.add(line);
+			processes.add(new Process(line));
 		}
 		reader.close();
 		return true;
