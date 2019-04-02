@@ -1,17 +1,16 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class Master {
-
+public class Main {
+	ArrayList<String> processes = new ArrayList<String>();
 	public static void main(String[] args) throws FileNotFoundException {
-		// TODO Auto-generated method stub
-		System.out.println("Hello world");
-		Scanner scanner = new Scanner(new File("./countries.csv"));
+		Scanner scanner = new Scanner(new File("./processes.csv"));
 		scanner.useDelimiter(",");
 		while (scanner.hasNext()) {
-			System.out.print(scanner.next()+"|");
+			System.out.print(scanner.next());
 		}
 		scanner.close();
 		

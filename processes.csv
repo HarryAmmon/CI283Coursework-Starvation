@@ -1,0 +1,3 @@
+pid,arrivalTime,burstTime,priority
+001,10001,20,1
+002,10002,10,2
