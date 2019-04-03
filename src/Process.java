@@ -1,5 +1,5 @@
 
-public class Process {
+public class Process implements Comparable<Process>{
 	private int pid;
 	private int arrivalTime;
 	private int burstTime;
@@ -33,4 +33,11 @@ public class Process {
 		this.priority = i;
 	}
 	
+	@Override
+	public int compareTo(Process comparePr) {
+		int compareArrivalTime = comparePr.getArrivalTime();
+		return this.arrivalTime - compareArrivalTime;
+	}
+	
+
 }
