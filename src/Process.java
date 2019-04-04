@@ -1,4 +1,3 @@
-
 public class Process implements Comparable<Process>{
 	private int pid;
 	private int arrivalTime;
@@ -37,6 +36,11 @@ public class Process implements Comparable<Process>{
 	public int compareTo(Process comparePr) {
 		int compareArrivalTime = comparePr.getArrivalTime();
 		return this.arrivalTime - compareArrivalTime;
+	}
+	
+	public void execute() throws InterruptedException {
+		//TimeUnit.MILLISECONDS.sleep(this.burstTime);
+		System.out.printf("PID: %4d | ArrivalTime: %4d | BurstTime: %4d | Priority: %4d%n", this.pid,this.arrivalTime,this.burstTime,this.priority);
 	}
 	
 

@@ -66,30 +66,40 @@ public class Schedular {
 	
 	public void start() {
 		System.out.println("*******EXECUTION ORDER********");
-		while(true) {//CHANGE THIS
-			Process pr;
-			if (highPriority.size() != 0) {
-				pr = highPriority.get(0);
-				System.out.printf("PID: %4d| ArrivalTime: %4d| BurnTime: %3d| Priority: %1d%n", pr.getPid(),pr.getArrivalTime(),pr.getBurstTime(),pr.getPriority());
-				highPriority.remove(0);
+		int systemClock = 0; // Simulates a clock that the system uses so processes are run when they "arrive"
+		int executed = 0;
+		while(true) {
+			try{
+					// If the queue isn't empty and the next process has the arrival time of the System clock
+				if (highPriority.size() != 0 && highPriority.get(0).getArrivalTime() <= systemClock) {
+					systemClock += highPriority.get(0).getBurstTime();
+					highPriority.get(0).execute();
+					highPriority.remove(0);
+					executed++;
+					}
+				else if(mediumPriority.size() != 0 && mediumPriority.get(0).getArrivalTime() <= systemClock){
+					systemClock += mediumPriority.get(0).getBurstTime();
+					mediumPriority.get(0).execute();
+					mediumPriority.remove(0);
+					executed++;
+					}
+				else if(lowPriority.size() != 0 && lowPriority.get(0).getArrivalTime() <= systemClock) {
+					systemClock += lowPriority.get(0).getBurstTime();
+					lowPriority.get(0).execute();
+					lowPriority.remove(0);
+					executed++;
+					}
+				else if(highPriority.isEmpty() && mediumPriority.isEmpty() && lowPriority.isEmpty()){ // If all queues are empty then there are no more processes to execute so program can stop
+					System.out.println("All queues are empty");
+					System.out.println(systemClock);
+					System.out.println(executed);
+					break;
+					}
+				else {systemClock++;}
+				}
+		
+		catch (InterruptedException e) {}
 			}
-			else if(mediumPriority.size() != 0){
-				pr = mediumPriority.get(0);
-				System.out.printf("PID: %4d| ArrivalTime: %4d| BurnTime: %3d| Priority: %1d%n", pr.getPid(),pr.getArrivalTime(),pr.getBurstTime(),pr.getPriority());
-				mediumPriority.remove(0);
-			}
-			else if(lowPriority.size() != 0) {
-				pr = lowPriority.get(0);
-				System.out.printf("PID: %4d| ArrivalTime: %4d| BurnTime: %3d| Priority: %1d%n", pr.getPid(),pr.getArrivalTime(),pr.getBurstTime(),pr.getPriority());
-				lowPriority.remove(0);
-				
-			}
-			else {
-				System.out.println("All queues are empty");
-				break;
-			}
+
 		}
 	}
-	
-
-}
