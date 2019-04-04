@@ -11,7 +11,10 @@ public class Schedular {
 		mediumPriority = new ArrayList<Process>();
 		highPriority = new ArrayList<Process>();
 	}
-	
+	/**
+	 * Will add Process e to to correct queue based on its priority
+	 * @param e
+	 */
 	public void addToQueue(Process e) {
 		switch(e.getPriority()) {
 		case 1:
@@ -42,7 +45,10 @@ public class Schedular {
 			break;
 			}
 	}
-	
+	/**
+	 * Method that prints out the contents of all queues
+	 * Mainly for testing and demonstration purposes
+	 */
 	public void showAllQueues() {
 		System.out.println("These are high priority processes");
 		for (int j = 0;j<highPriority.size();j++) {
@@ -57,5 +63,33 @@ public class Schedular {
 			System.out.printf("PID: %4d| ArrivalTime: %4d| BurnTime: %3d |Priority: %1d%n",lowPriority.get(l).getPid(),lowPriority.get(l).getArrivalTime(),lowPriority.get(l).getBurstTime(),lowPriority.get(l).getPriority());
 		}
 	}
+	
+	public void start() {
+		System.out.println("*******EXECUTION ORDER********");
+		while(true) {//CHANGE THIS
+			Process pr;
+			if (highPriority.size() != 0) {
+				pr = highPriority.get(0);
+				System.out.printf("PID: %4d| ArrivalTime: %4d| BurnTime: %3d| Priority: %1d%n", pr.getPid(),pr.getArrivalTime(),pr.getBurstTime(),pr.getPriority());
+				highPriority.remove(0);
+			}
+			else if(mediumPriority.size() != 0){
+				pr = mediumPriority.get(0);
+				System.out.printf("PID: %4d| ArrivalTime: %4d| BurnTime: %3d| Priority: %1d%n", pr.getPid(),pr.getArrivalTime(),pr.getBurstTime(),pr.getPriority());
+				mediumPriority.remove(0);
+			}
+			else if(lowPriority.size() != 0) {
+				pr = lowPriority.get(0);
+				System.out.printf("PID: %4d| ArrivalTime: %4d| BurnTime: %3d| Priority: %1d%n", pr.getPid(),pr.getArrivalTime(),pr.getBurstTime(),pr.getPriority());
+				lowPriority.remove(0);
+				
+			}
+			else {
+				System.out.println("All queues are empty");
+				break;
+			}
+		}
+	}
+	
 
 }
