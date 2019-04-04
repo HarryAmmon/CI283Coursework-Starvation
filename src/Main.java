@@ -19,9 +19,10 @@ public class Main {
 		schedular.sortQueue(3);
 		System.out.println("Queues sorted");
 		//schedular.showAllQueues();
+		schedular.start();
 		long endTime   = System.nanoTime();
 		long totalTime = endTime - startTime;
-		schedular.start();
+		
 		System.out.printf("Runtime %d milleseconds%n",totalTime/1000000);
 	}
 	
