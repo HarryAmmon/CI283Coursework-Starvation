@@ -2,6 +2,8 @@ public class Process implements Comparable<Process>{
 	private int pid;
 	private int arrivalTime;
 	private int burstTime;
+	private int executionTime;
+	private int waitTime;
 	private int priority;
 	
 	Process(String process){
@@ -10,6 +12,8 @@ public class Process implements Comparable<Process>{
 		this.arrivalTime = Integer.parseInt(fields[1]);
 		this.burstTime = Integer.parseInt(fields[2]);
 		this.priority = Integer.parseInt(fields[3]);
+		this.executionTime = 0;
+		this.waitTime = 0;
 	}
 
 	public int getPid() {
@@ -32,14 +36,20 @@ public class Process implements Comparable<Process>{
 		this.priority = i;
 	}
 	
+	public int getExecutionTime() {
+		return this.executionTime;
+	}
+	
 	@Override
 	public int compareTo(Process comparePr) {
 		int compareArrivalTime = comparePr.getArrivalTime();
 		return this.arrivalTime - compareArrivalTime;
 	}
 	
-	public void execute(){
-		System.out.printf("PID: %4d | ArrivalTime: %4d | BurstTime: %4d | Priority: %4d%n", this.pid,this.arrivalTime,this.burstTime,this.priority);
+	public void execute(int systemTime){
+		this.executionTime = systemTime;
+		this.waitTime = executionTime - arrivalTime;
+		System.out.printf("PID: %4d | ArrivalTime: %4d | ExecutionTime: %6d | WaitTime: %5d | BurstTime: %4d | Priority: %2d%n", this.pid,this.arrivalTime,this.executionTime,this.waitTime,this.burstTime,this.priority);
 	}
 	
 

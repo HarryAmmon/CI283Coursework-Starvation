@@ -28,6 +28,7 @@ public class Schedular {
 			break;
 			}
 	}
+	
 	/**
 	 * This will sort the given priority queue (i) so that arrival time is in ascending order
 	 * @param i Where 1 = highPriority, 2 = mediumPriority, 3 = lowPriority
@@ -45,6 +46,7 @@ public class Schedular {
 			break;
 			}
 	}
+	
 	/**
 	 * Method that prints out the contents of all queues
 	 * Mainly for testing and demonstration purposes
@@ -65,32 +67,39 @@ public class Schedular {
 	}
 	
 	public void start() {
-		System.out.println("*******EXECUTION ORDER********");
+		System.out.println("**********************EXECUTION ORDER**********************");
 		int systemClock = 0; // Simulates a clock that the system uses so processes are run when they "arrive"
 		int executed = 0;
+		int high = 0; //REMOVE
+		int med = 0; //REMOVE
+		int low = 0; //REMOVE
 		while(true) {
 					// If the queue isn't empty and the next process has the arrival time of the System clock
 				if (highPriority.size() != 0 && highPriority.get(0).getArrivalTime() <= systemClock) {
+					highPriority.get(0).execute(systemClock);
 					systemClock += highPriority.get(0).getBurstTime();
-					highPriority.get(0).execute();
 					highPriority.remove(0);
 					executed++;
+					high++;//REMOVE
 					}
 				else if(mediumPriority.size() != 0 && mediumPriority.get(0).getArrivalTime() <= systemClock){
+					mediumPriority.get(0).execute(systemClock);
 					systemClock += mediumPriority.get(0).getBurstTime();
-					mediumPriority.get(0).execute();
 					mediumPriority.remove(0);
 					executed++;
+					med++; //REMOVE
 					}
 				else if(lowPriority.size() != 0 && lowPriority.get(0).getArrivalTime() <= systemClock) {
+					lowPriority.get(0).execute(systemClock);
 					systemClock += lowPriority.get(0).getBurstTime();
-					lowPriority.get(0).execute();
 					lowPriority.remove(0);
 					executed++;
+					low++; //REMOVE
 					}
 				else if(highPriority.isEmpty() && mediumPriority.isEmpty() && lowPriority.isEmpty()){ // If all queues are empty then there are no more processes to execute so program can stop
 					System.out.println("All queues are empty");
 					System.out.printf("%4d process have been executed%n",executed);
+					System.out.printf("High: %3d|Med: %3d|Low %3d%n",high,med,low);
 					break;
 					}
 				else {systemClock++;}
