@@ -21,7 +21,7 @@ public class Main {
 		long endTime   = System.nanoTime();
 		long totalTime = endTime - startTime;
 		
-		System.out.printf("Runtime %d milleseconds%n",totalTime/1000000);
+		System.out.printf("Calculated in %d milleseconds%n",totalTime/1000000);
 	}
 	
 	private static boolean readCSV(String path) throws IOException {

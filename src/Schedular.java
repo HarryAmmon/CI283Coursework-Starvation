@@ -28,6 +28,7 @@ public class Schedular {
 			break;
 			}
 	}
+	
 	/**
 	 * This will sort the given priority queue (i) so that arrival time is in ascending order
 	 * @param i Where 1 = highPriority, 2 = mediumPriority, 3 = lowPriority
@@ -45,6 +46,7 @@ public class Schedular {
 			break;
 			}
 	}
+	
 	/**
 	 * Method that prints out the contents of all queues
 	 * Mainly for testing and demonstration purposes
@@ -71,20 +73,20 @@ public class Schedular {
 		while(true) {
 					// If the queue isn't empty and the next process has the arrival time of the System clock
 				if (highPriority.size() != 0 && highPriority.get(0).getArrivalTime() <= systemClock) {
+					highPriority.get(0).execute(systemClock);
 					systemClock += highPriority.get(0).getBurstTime();
-					highPriority.get(0).execute();
 					highPriority.remove(0);
 					executed++;
 					}
 				else if(mediumPriority.size() != 0 && mediumPriority.get(0).getArrivalTime() <= systemClock){
+					mediumPriority.get(0).execute(systemClock);
 					systemClock += mediumPriority.get(0).getBurstTime();
-					mediumPriority.get(0).execute();
 					mediumPriority.remove(0);
 					executed++;
 					}
 				else if(lowPriority.size() != 0 && lowPriority.get(0).getArrivalTime() <= systemClock) {
+					lowPriority.get(0).execute(systemClock);
 					systemClock += lowPriority.get(0).getBurstTime();
-					lowPriority.get(0).execute();
 					lowPriority.remove(0);
 					executed++;
 					}
