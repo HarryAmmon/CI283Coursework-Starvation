@@ -13,12 +13,10 @@ public class Main {
 		for (int i = 0; i<processes.size();i++) {
 			schedular.addToQueue(processes.get(i));
 		}
-		//schedular.showAllQueues();
 		schedular.sortQueue(1);
 		schedular.sortQueue(2);
 		schedular.sortQueue(3);
 		System.out.println("Queues sorted");
-		//schedular.showAllQueues();
 		schedular.start();
 		long endTime   = System.nanoTime();
 		long totalTime = endTime - startTime;

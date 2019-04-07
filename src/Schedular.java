@@ -69,7 +69,6 @@ public class Schedular {
 		int systemClock = 0; // Simulates a clock that the system uses so processes are run when they "arrive"
 		int executed = 0;
 		while(true) {
-			try{
 					// If the queue isn't empty and the next process has the arrival time of the System clock
 				if (highPriority.size() != 0 && highPriority.get(0).getArrivalTime() <= systemClock) {
 					systemClock += highPriority.get(0).getBurstTime();
@@ -91,14 +90,12 @@ public class Schedular {
 					}
 				else if(highPriority.isEmpty() && mediumPriority.isEmpty() && lowPriority.isEmpty()){ // If all queues are empty then there are no more processes to execute so program can stop
 					System.out.println("All queues are empty");
-					System.out.println(systemClock);
-					System.out.println(executed);
+					System.out.printf("%4d process have been executed%n",executed);
 					break;
 					}
 				else {systemClock++;}
-				}
+				
 		
-		catch (InterruptedException e) {}
 			}
 
 		}

@@ -38,8 +38,7 @@ public class Process implements Comparable<Process>{
 		return this.arrivalTime - compareArrivalTime;
 	}
 	
-	public void execute() throws InterruptedException {
-		//TimeUnit.MILLISECONDS.sleep(this.burstTime);
+	public void execute(){
 		System.out.printf("PID: %4d | ArrivalTime: %4d | BurstTime: %4d | Priority: %4d%n", this.pid,this.arrivalTime,this.burstTime,this.priority);
 	}
 	
