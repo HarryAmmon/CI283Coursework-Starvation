@@ -42,8 +42,8 @@ public class Process implements Comparable<Process>{
 	
 	@Override
 	public int compareTo(Process comparePr) {
-		int compareArrivalTime = comparePr.getArrivalTime();
-		return this.arrivalTime - compareArrivalTime;
+		int compareBurstTime = comparePr.getBurstTime();
+		return this.burstTime - compareBurstTime;
 	}
 	
 	public void execute(int systemTime){
