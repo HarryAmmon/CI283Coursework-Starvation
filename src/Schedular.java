@@ -30,7 +30,7 @@ public class Schedular {
 	}
 	
 	/**
-	 * This will sort the given priority queue (i) so that arrival time is in ascending order
+	 * This will sort the given priority queue (i) so that burst time is in ascending order
 	 * @param i Where 1 = highPriority, 2 = mediumPriority, 3 = lowPriority
 	 */
 	public void sortQueue(int i) {
